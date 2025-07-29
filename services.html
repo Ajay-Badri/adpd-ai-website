@@ -6,20 +6,127 @@
     <title>Services - ADPD Training, Consulting & AI Development</title>
     <meta name="description" content="Transform your organization with ADPD training, enterprise implementation, AI-assisted development, and expert consulting services.">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Enhanced Parinama-style Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease;
+            opacity: 0.9;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: white;
+            color: #2563eb !important;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            opacity: 1 !important;
+        }
+
+        .nav-cta:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        /* Fix for sections to account for fixed navbar */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Enhanced Parinama Navigation -->
     <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">ADPD</a>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-brand">
+                    <span class="nav-logo">ADPD³</span>
+                    <span class="nav-subtitle">| Adoption-Driven Product Design, Development & Delivery |</span>
+                </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="beta.html" class="cta-button">Access Beta</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="method.html">Method</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <a href="beta.html" class="nav-cta">Try Parinama</a>
+            </div>
         </div>
     </nav>
 

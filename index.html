@@ -3,123 +3,928 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADPD - Build Enterprise Software Without Writing Code</title>
-    <meta name="description" content="ADPD empowers anyone with an idea to design, develop, and deliver solutions that customers actually adopt. Experience the future of AI-assisted software development.">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>ADPD-AI - Turn Your Idea Into Software People Actually Use</title>
+    <meta name="description" content="Great software is built by great developers working with great backlogs. ADPD methodology ensures your requirements focus on adoption. Built by us. Powered by you.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        /* Enhanced Parinama-style Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease;
+            opacity: 0.9;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: white;
+            color: #2563eb !important;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            opacity: 1 !important;
+        }
+
+        .nav-cta:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        /* Modern Hero Section */
+        .hero {
+            padding: 8rem 2rem 6rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-headline {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subheadline {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-secondary:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Truth Section */
+        .truth-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .truth-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .truth-statement {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .truth-explanation {
+            font-size: 1.125rem;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* Implementation Spectrum */
+        .spectrum-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        .spectrum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .spectrum-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .spectrum-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .spectrum-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .spectrum-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.75rem;
+        }
+
+        .spectrum-description {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .universal-need {
+            background: #2563eb;
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .universal-need h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .universal-need p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        /* ADPD Method Section */
+        .method-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .method-intro {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .method-highlight {
+            font-size: 1.25rem;
+            color: #2563eb;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .method-description {
+            font-size: 1.125rem;
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .gates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .gate-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        .gate-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .gate-circle:hover {
+            transform: scale(1.05);
+        }
+
+        .gate-1 { background: #2563eb; }
+        .gate-2 { background: #7c3aed; }
+        .gate-3 { background: #dc2626; }
+        .gate-4 { background: #ea580c; }
+        .gate-5 { background: #059669; }
+        .gate-6 { background: #0891b2; }
+        .gate-7 { background: #7c3aed; }
+
+        .gate-name {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        /* Parinama Section */
+        .parinama-section {
+            padding: 6rem 2rem;
+            background: #111827;
+            color: white;
+        }
+
+        .parinama-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .parinama-content h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #3b82f6;
+        }
+
+        .parinama-benefits {
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .benefit-description {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .parinama-visual {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .parinama-visual:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3b82f6;
+        }
+
+        .visual-icon {
+            font-size: 4rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .visual-text {
+            color: #9ca3af;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .export-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .export-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .export-icon {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: #2563eb;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-headline {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-subheadline {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .tagline-emphasis {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .btn-white {
+            background: white;
+            color: #2563eb;
+            border: 2px solid white;
+        }
+
+        .btn-white:hover {
+            background: #f8fafc;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .creator-credit {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .parinama-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .gates-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+
+            .gate-circle {
+                width: 80px;
+                height: 80px;
+                font-size: 0.75rem;
+            }
+
+            .export-icons {
+                gap: 1rem;
+            }
+        }
+
+        /* Smooth animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Enhanced Parinama Navigation -->
     <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">ADPD</a>
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-brand">
+                    <span class="nav-logo">ADPD³</span>
+                    <span class="nav-subtitle">| Adoption-Driven Product Design, Development & Delivery |</span>
+                </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="beta.html" class="cta-button">Access Beta</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="method.html">Method</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <a href="beta.html" class="nav-cta">Try Parinama</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Build Enterprise Software<br>Without Writing Code</h1>
-            <p class="hero-subtitle">ADPD empowers anyone with an idea to design, develop, and deliver solutions that customers actually adopt</p>
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-badge">Built by us. Powered by you.</div>
+            
+            <h1 class="hero-headline">Turn Your Idea Into Software People Actually Use</h1>
+            
+            <p class="hero-subheadline">
+                You have an idea that could solve a real problem. We help you create an enterprise-class backlog that turns that idea into adopted software.
+            </p>
+
             <div class="hero-buttons">
-                <a href="beta.html" class="button button-primary">Join Parinama Beta</a>
-                <a href="#methodology" class="button button-secondary">Learn About ADPD</a>
+                <a href="#platform" class="btn btn-primary">See Parinama in Action</a>
+                <a href="method.html" class="btn btn-secondary">Learn the Method</a>
             </div>
         </div>
     </section>
 
-    <!-- Introduction Section -->
-    <section id="methodology" class="section">
+    <!-- Truth Section -->
+    <section class="truth-section">
         <div class="container">
-            <h2>The Adoption Problem</h2>
-            <p class="lead">90% of products fail not because they lack features, but because they fail at adoption. Amazing capabilities go unused. Powerful solutions get abandoned. The gap between what we build and what users actually adopt has never been wider.</p>
-            
-            <p>Traditional product development treats adoption as an afterthought—something to worry about after launch. ADPD flips this model entirely. We design for adoption from day one, thinking about real-world usage before writing a single line of code.</p>
-
-            <h2>Introducing ADPD</h2>
-            <p><strong>Adoption-Driven Product Design, Development & Delivery</strong> is a revolutionary methodology that ensures every product decision is filtered through the lens of user adoption. It works across any industry and transforms how we think about building software.</p>
-        </div>
-    </section>
-
-    <!-- FUSE Framework Section -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2>The FUSE Framework</h2>
-            <p class="lead">Four gates every product must pass before users will adopt it</p>
-            
-            <div class="fuse-grid">
-                <div class="fuse-item">
-                    <h3>F - Findability</h3>
-                    <p>Can users discover your solution when they need it? If they can't find it, nothing else matters.</p>
-                </div>
-                <div class="fuse-item">
-                    <h3>U - Understandability</h3>
-                    <p>Do users immediately grasp what your product does and why they should care?</p>
-                </div>
-                <div class="fuse-item">
-                    <h3>S - Shippability</h3>
-                    <p>Is your product reliable, secure, and performant enough for real-world use?</p>
-                </div>
-                <div class="fuse-item">
-                    <h3>E - Ease of Use</h3>
-                    <p>Can users achieve their goals with minimal effort and maximum delight?</p>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">The Foundation of Great Software</h2>
+                <p class="section-subtitle">Understanding what really determines whether software succeeds or fails</p>
             </div>
-            
-            <div class="fuse-scoring">
-                <p><strong>MAS (Minimum Adoption Score):</strong> 5/10 - The minimum threshold to proceed</p>
-                <p><strong>TAS (Target Adoption Score):</strong> 7+/10 - Ready for mainstream adoption</p>
+
+            <div class="truth-card fade-in">
+                <div class="truth-statement">Great software is built by great developers working with great backlogs</div>
+                <div class="truth-explanation">
+                    The greatest developers in the world cannot save a poorly defined and designed product. 
+                    Most software fails not because of bad code, but because of requirements that ignore user adoption. 
+                    When your backlog focuses on features users actually want, magic happens.
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Collaboration Section -->
-    <section class="section">
+    <!-- Implementation Spectrum Section -->
+    <section class="spectrum-section">
         <div class="container">
-            <h2>The Future is AI-Human Collaboration</h2>
-            <p class="lead">Parinama wasn't built by a team of developers. It was built through a revolutionary collaboration between human vision and AI implementation.</p>
-            
-            <p>This isn't "no-code" or "low-code"—it's something entirely new. By providing clear requirements and leveraging AI as an implementation partner, we've created enterprise-grade software that rivals products built by large development teams.</p>
-            
-            <p>The best part? Anyone can do this. ADPD provides the methodology. AI provides the implementation. You provide the vision.</p>
-        </div>
-    </section>
+            <div class="section-header">
+                <h2 class="section-title">Meet You Where You Are</h2>
+                <p class="section-subtitle">Whether you're building your first app or your fiftieth, the foundation is the same: quality requirements designed for adoption.</p>
+            </div>
 
-    <!-- Creator Section -->
-    <section class="section">
-        <div class="container">
-            <h2>Who's Behind ADPD?</h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p class="lead">I'm Ajay Badrinarayanan, a product manager with 30+ years of experience building enterprise software in financial services and manufacturing.</p>
-                <p>I've taught product management to over 500 analysts, mentored 50+ product managers, and built planet-scale solutions. When GenAI arrived, I transformed from a designer to a creator—building powerful solutions in RAG, model fine-tuning, and AI-assisted development.</p>
-                <p>ADPD is the culmination of decades of experience combined with the revolutionary possibilities of AI collaboration.</p>
-                <a href="about.html" class="button button-secondary" style="margin-top: 1.5rem;">Learn My Story</a>
+            <div class="spectrum-grid">
+                <div class="spectrum-card fade-in">
+                    <div class="spectrum-icon">🌱</div>
+                    <h3 class="spectrum-title">First-Time Builder</h3>
+                    <div class="spectrum-description">
+                        "I have an idea but don't know how to build software. I need guidance on product principles."
+                    </div>
+                </div>
+
+                <div class="spectrum-card fade-in">
+                    <div class="spectrum-icon">🔧</div>
+                    <h3 class="spectrum-title">Developing Skills</h3>
+                    <div class="spectrum-description">
+                        "I know some development but struggle with turning ideas into clear, actionable requirements."
+                    </div>
+                </div>
+
+                <div class="spectrum-card fade-in">
+                    <div class="spectrum-icon">🎯</div>
+                    <h3 class="spectrum-title">Experienced PM</h3>
+                    <div class="spectrum-description">
+                        "I'm a seasoned product manager who needs sophisticated tools for creating adoption-focused backlogs."
+                    </div>
+                </div>
+
+                <div class="spectrum-card fade-in">
+                    <div class="spectrum-icon">🤖</div>
+                    <h3 class="spectrum-title">AI-Assisted Builder</h3>
+                    <div class="spectrum-description">
+                        "I work with AI to build software but need structured requirements to guide the development process."
+                    </div>
+                </div>
+            </div>
+
+            <div class="universal-need">
+                <h3>The Universal Need</h3>
+                <p>Everyone needs the same foundation: <strong>an enterprise-class backlog ready for development</strong>, regardless of who builds the final software.</p>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section section-cta">
+    <!-- ADPD Method Section -->
+    <section class="method-section" id="method">
         <div class="container">
-            <h2>Ready to Build Your Vision?</h2>
-            <p class="lead">Join the beta and experience ADPD in action with Parinama</p>
-            <a href="beta.html" class="button button-primary button-large">Request Beta Access</a>
+            <div class="section-header">
+                <h2 class="section-title">ADPD: Adoption-Driven Product Design</h2>
+                <p class="section-subtitle">A methodology that ensures every requirement in your backlog is designed for user adoption from day one.</p>
+            </div>
+
+            <div class="method-intro fade-in">
+                <div class="method-highlight">The ADPD Difference</div>
+                <p class="method-description">
+                    ADPD isn't about building faster—it's about building smarter. Every feature, every requirement passes through 7 gates designed to ensure adoption. The result is a backlog that leads to software people actually use.
+                </p>
+            </div>
+
+            <div class="gates-grid">
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-1">Gate 1<br>Outcome</div>
+                    <div class="gate-name">Define Goals</div>
+                </div>
+                
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-2">Gate 2<br>Value</div>
+                    <div class="gate-name">Verify Need</div>
+                </div>
+                
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-3">Gate 3<br>Design</div>
+                    <div class="gate-name">Plan Adoption</div>
+                </div>
+                
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-4">Gate 4<br>Validate</div>
+                    <div class="gate-name">Test Early</div>
+                </div>
+                
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-5">Gate 5<br>Build</div>
+                    <div class="gate-name">Quality Focus</div>
+                </div>
+                
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-6">Gate 6<br>Check</div>
+                    <div class="gate-name">Measure Usage</div>
+                </div>
+                
+                <div class="gate-item fade-in">
+                    <div class="gate-circle gate-7">Gate 7<br>Iterate</div>
+                    <div class="gate-name">Fix & Improve</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.125rem; color: #6b7280; line-height: 1.6;">
+                    Each gate ensures your backlog focuses on <strong>adoption</strong>, not just features. 
+                    The result is requirements that lead to software people want to use.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Parinama Platform Section -->
+    <section class="parinama-section" id="platform">
         <div class="container">
-            <p>&copy; 2024 Ajay Badrinarayanan and Kharan Badrinarayanan. All rights reserved.</p>
-            <p>ADPD methodology and Parinama software are protected by copyright law.</p>
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Parinama: Your Universal Backlog Platform</h2>
+                <p class="section-subtitle" style="color: #d1d5db;">The software that turns ADPD methodology into a seamless experience, meeting you wherever you are in your journey.</p>
+            </div>
+
+            <div class="parinama-grid">
+                <div class="parinama-content">
+                    <h3>Built by us. Powered by you.</h3>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #e5e7eb;">
+                        Parinama adapts to your experience level and guides you through the ADPD methodology, 
+                        ensuring every requirement in your backlog is designed for adoption.
+                    </p>
+
+                    <div class="parinama-benefits">
+                        <div class="benefit-item fade-in">
+                            <div class="benefit-icon">🌱</div>
+                            <div>
+                                <div class="benefit-title">For Newcomers</div>
+                                <div class="benefit-description">Learn software development principles while building your backlog with AI guidance every step of the way</div>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item fade-in">
+                            <div class="benefit-icon">🎯</div>
+                            <div>
+                                <div class="benefit-title">For Veterans</div>
+                                <div class="benefit-description">Sophisticated tools for expert product managers who want to create adoption-focused backlogs efficiently</div>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item fade-in">
+                            <div class="benefit-icon">🤖</div>
+                            <div>
+                                <div class="benefit-title">AI-Enhanced</div>
+                                <div class="benefit-description">Get intelligent suggestions and guidance throughout the ADPD process, but the thinking and decisions remain yours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="parinama-visual" onclick="showParinama()">
+                    <div class="visual-icon">🖼️</div>
+                    <div class="visual-text">
+                        <strong>See Parinama in Action</strong><br>
+                        Screenshots showing how ideas become enterprise-class backlogs<br>
+                        <em>Click to explore the platform</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="export-section">
+                <h3 style="margin-bottom: 1rem;">Export to Your Development Environment</h3>
+                <p style="color: #d1d5db; margin-bottom: 1.5rem;">Once your backlog is ready, export it to any platform where development happens</p>
+                
+                <div class="export-icons">
+                    <div class="export-icon">Jira</div>
+                    <div class="export-icon">Azure DevOps</div>
+                    <div class="export-icon">GitHub</div>
+                    <div class="export-icon">Linear</div>
+                    <div class="export-icon">Asana</div>
+                    <div class="export-icon">Custom Export</div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section" id="beta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-headline">Ready to Turn Your Idea Into Adopted Software?</h2>
+                <p class="cta-subheadline">
+                    Join the community building software that users actually want. Start with an enterprise-class backlog, regardless of who builds your final product.
+                </p>
+
+                <div class="tagline-emphasis">Built by us. Powered by you.</div>
+
+                <div class="cta-buttons">
+                    <a href="beta.html" class="btn btn-white">Try Parinama Beta</a>
+                    <a href="method.html" class="btn btn-outline">Learn ADPD Method</a>
+                </div>
+
+                <div class="creator-credit">
+                    <p><strong>Created by Ajay Badrinarayanan</strong></p>
+                    <p>30+ years in product management • 500+ students trained • 50+ PMs mentored<br>
+                    Pioneer in AI-human collaboration for enterprise software development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        // Screenshot viewer for Parinama
+        function showParinama() {
+            alert('Parinama interface gallery would open here, showing:\n\n• ADPD 7-gate workflow in action\n• Backlog creation with AI assistance\n• Requirements designed for adoption\n• Export capabilities to development tools\n• Interface that adapts to your experience level\n\nThis demonstrates the universal platform for turning ideas into enterprise-class backlogs.');
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
 </body>
 </html>
