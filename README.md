@@ -1,11 +1,11 @@
-# ADPD Website
+# ADPD³ Website
 
-This is the official website for ADPD (Adoption-Driven Product Design, Development & Delivery) methodology and Parinama beta access.
+This is the official website for ADPD³ (Adoption-Driven Product Design, Development & Delivery) methodology and Parinama beta access.
 
 ## Structure
 
-- `index.html` - Homepage with ADPD introduction and FUSE framework
-- `about.html` - The story of ADPD and AI-human collaboration
+- `index.html` - Homepage with ADPD³ introduction and FUSE framework
+- `about.html` - The story of ADPD³ and AI-human collaboration
 - `services.html` - Four service offerings (training, implementation, development, consulting)
 - `beta.html` - Parinama beta access request form
 - `assets/css/style.css` - All styling
