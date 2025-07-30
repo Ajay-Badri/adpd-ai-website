@@ -1,6 +1,6 @@
 # ADPD³ Website
 
-This is the official website for ADPD³ (Adoption-Driven Product Design, Development & Delivery) methodology and Parinama beta access.
+This is the official website for ADPD³ (Adoption-Driven Design, Development and Delivery) methodology and Parinama beta access.
 
 ## Structure
 
