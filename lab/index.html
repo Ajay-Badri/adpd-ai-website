@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can We...? | The ADPD Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- The "Book" Pane -->
+        <div class="book-pane" id="bookPane">
+            <div class="book-content">
+                <h1>Chapter 1: The Peeler That Conquered the Kitchen Drawer</h1>
+                <p class="quote"><em>"Recognizing the need is the primary condition for design." — Charles Eames</em></p>
+                
+                <p>This book is built on a simple, powerful belief: the greatest barrier to progress has always been the gap between a brilliant idea and the ability to make it real...</p>
+                
+                <!-- Placeholder for more book content -->
+                <p>[... a few paragraphs of the brilliant OXO story would go here ...]</p>
+                
+                <!-- This is the "Mission Briefing" that will trigger the lab -->
+                <div class="mission-briefing">
+                    <h2>Mission Briefing: The Idea Gate</h2>
+                    <p>You've learned how a simple 'What If...?' can change the world. Now it's time to articulate yours. Your AI partner, The Alchemist, is waiting to help you capture your idea.</p>
+                    <button id="openLabButton">Open The Alchemist Lab</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- The "Alchemist" Pane (Initially Hidden) -->
+        <div class="alchemist-pane" id="alchemistPane">
+            <div class="alchemist-header">
+                <h3>The Alchemist</h3>
+                <button id="closeLabButton">&times;</button>
+            </div>
+            <div class="alchemist-chat-window">
+                <!-- Chat messages will be added here by JavaScript -->
+                <div class="chat-message assistant">
+                    <p>Welcome to the Lab! I'm The Alchemist, your AI partner. To begin, what is the core idea you'd like to explore?</p>
+                </div>
+            </div>
+            <div class="alchemist-input-area">
+                <textarea placeholder="Tell me about your idea..."></textarea>
+                <button>Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

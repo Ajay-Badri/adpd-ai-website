@@ -1,0 +1,158 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    font-family: 'Lora', serif;
+    background-color: #FDFBF7; /* A warm, off-white */
+    color: #333;
+    line-height: 1.7;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    transition: all 0.5s ease-in-out;
+}
+
+/* The "Book" Pane Styling */
+.book-pane {
+    width: 100%;
+    padding: 40px 60px;
+    box-sizing: border-box;
+    transition: width 0.5s ease-in-out;
+}
+
+.book-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.quote {
+    font-style: italic;
+    color: #777;
+    border-left: 3px solid #DDC;
+    padding-left: 20px;
+    margin-bottom: 2em;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 1.2em;
+}
+
+/* The "Mission Briefing" CTA Block */
+.mission-briefing {
+    background-color: #F4F1EB;
+    border: 1px solid #EAE5D9;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    margin-top: 0;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 12px 24px;
+    border-radius: 50px; /* Pill shape */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#openLabButton {
+    background-color: #8A6E5F; /* A warm, earthy brown */
+    color: white;
+}
+
+#openLabButton:hover {
+    background-color: #6E584D;
+}
+
+/* The "Alchemist" Pane Styling */
+.alchemist-pane {
+    width: 0; /* Initially hidden */
+    background-color: #F0EDE5;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevents content from showing while hidden */
+    transition: width 0.5s ease-in-out;
+    border-left: 1px solid #EAE5D9;
+}
+
+.alchemist-header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EAE5D9;
+}
+
+.alchemist-header h3 {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+#closeLabButton {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #777;
+}
+
+.alchemist-chat-window {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+}
+
+.chat-message p {
+    background-color: #FFF;
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.alchemist-input-area {
+    padding: 20px;
+    border-top: 1px solid #EAE5D9;
+    display: flex;
+}
+
+.alchemist-input-area textarea {
+    flex-grow: 1;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Lora', serif;
+    font-size: 1em;
+    resize: none;
+}
+
+.alchemist-input-area button {
+    margin-left: 10px;
+    background-color: #8A6E5F;
+    color: white;
+}
