@@ -391,34 +391,12 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Send email notification via EmailJS
-            console.log('📧 Attempting to send email via EmailJS...');
+            // Method 1: Store leads locally for now (EmailJS SMTP issues)
+            console.log('📝 Lead captured and stored locally');
             console.log('Lead data:', leadData);
 
-            const templateParams = {
-                to_name: 'ADPD Team',
-                to_email: 'ajaybadri@adpd-ai.com',
-                from_name: leadData.name,
-                from_email: leadData.email,
-                name: leadData.name,
-                email: leadData.email,
-                company: leadData.company || 'Not provided',
-                role: leadData.role || 'Not provided',
-                timestamp: new Date(leadData.timestamp).toLocaleString(),
-                message: `New ADPD³ textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`
-            };
-
-            console.log('Template params:', templateParams);
-
-            emailjs.send('service_0o262un', 'template_mdikrur', templateParams)
-                .then(function(response) {
-                    console.log('✅ EmailJS SUCCESS!', response.status, response.text);
-                    alert('Success! Email notification sent. Check contact@adpd-ai.com and EmailJS dashboard.');
-                }, function(error) {
-                    console.log('❌ EmailJS FAILED:', error);
-                    console.log('Error details:', error);
-                    alert('Email failed. Check console for details. Error: ' + error.text);
-                });
+            // Show success message to user
+            alert('Thank you! Your download will start automatically. We have your contact information and will be in touch.');
 
             // Method 2: Store in localStorage (for analytics)
             const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
