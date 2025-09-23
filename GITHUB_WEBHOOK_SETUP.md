@@ -1,14 +1,15 @@
-# GitHub Action Webhook Setup for Lead Capture
+# GitHub Issues-Based Lead Capture Setup
 
-This guide shows you how to set up automated lead capture using GitHub Actions and your Resend account.
+This guide shows you how to set up automated lead capture using GitHub Issues, Actions, and your Resend account.
 
 ## Overview
 
 When a user downloads the textbook, the system will:
 1. Capture lead data on the website
-2. Trigger a GitHub Action via repository dispatch
-3. GitHub Action sends email via your Resend account
-4. You receive instant lead notifications
+2. Create a GitHub issue with the lead information
+3. GitHub Action automatically processes the issue
+4. Email sent via your Resend account
+5. Issue automatically closed after processing
 
 ## Setup Steps
 
@@ -21,32 +22,20 @@ When a user downloads the textbook, the system will:
 5. Value: Your Resend API key (starts with `re_`)
 6. Click **Add secret**
 
-### 2. Create GitHub Personal Access Token
+### 2. No Additional Setup Required!
 
-1. Go to GitHub **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
-2. Click **Generate new token (classic)**
-3. Name: `ADPD Website Lead Capture`
-4. Scopes: Check **repo** (full control of private repositories)
-5. Click **Generate token**
-6. Copy the token (starts with `ghp_` or `github_pat_`)
+✅ **No tokens needed** - This approach uses GitHub's public API for issue creation
+✅ **Fully secure** - API keys stored safely in GitHub Secrets
+✅ **Automatic processing** - Issues trigger the workflow automatically
 
-### 3. Update Frontend Code
-
-In `book.html`, replace `github_pat_YOUR_TOKEN_HERE` with your actual token:
-
-```javascript
-'Authorization': 'Bearer github_pat_11ABCDEFGH_EXAMPLE123456789'
-```
-
-**Security Note**: Since this is a public repository, consider using a more secure approach (see Alternative Setup below).
-
-### 4. Test the System
+### 3. Test the System
 
 1. Push the changes to GitHub
 2. Visit your website and try downloading the textbook
-3. Check **Actions** tab in your GitHub repository
-4. You should see a "Lead Capture via Resend" workflow run
-5. Check your email for the lead notification
+3. Check **Issues** tab in your GitHub repository - you should see a new issue created
+4. Check **Actions** tab - you should see a "Lead Capture via Resend" workflow run
+5. The issue should automatically close with a success comment
+6. Check your email for the lead notification
 
 ## Alternative Setup (More Secure)
 

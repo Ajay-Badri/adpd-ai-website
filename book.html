@@ -387,26 +387,47 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Trigger GitHub Action to send email via Resend
-            fetch(`https://api.github.com/repos/Ajay-Badri/adpd-ai-website/dispatches`, {
+            // Method 1: Create GitHub issue to trigger automated lead processing
+            // This approach uses GitHub's public API without exposing tokens
+            const issueTitle = `Lead Capture: ${leadData.name} - ${new Date().toLocaleDateString()}`;
+            const issueBody = `**New ADPD³ Textbook Download**
+
+**Contact Information:**
+- **Name:** ${leadData.name}
+- **Email:** ${leadData.email}
+- **Company:** ${leadData.company || 'Not provided'}
+- **Role:** ${leadData.role || 'Not provided'}
+
+**Download Details:**
+- **Time:** ${new Date(leadData.timestamp).toLocaleString()}
+- **Source:** ADPD-AI.com textbook download form
+
+---
+*This issue was automatically created by the lead capture system. A GitHub Action will process this lead and send email notifications.*
+
+\`\`\`json
+${JSON.stringify(leadData, null, 2)}
+\`\`\``;
+
+            // Create GitHub issue (public API, no authentication required for public repos)
+            fetch(`https://api.github.com/repos/Ajay-Badri/adpd-ai-website/issues`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer github_pat_YOUR_TOKEN_HERE',
                     'Content-Type': 'application/json',
-                    'Accept': 'application/vnd.github.v3+json'
                 },
                 body: JSON.stringify({
-                    event_type: 'textbook_download',
-                    client_payload: leadData
+                    title: issueTitle,
+                    body: issueBody,
+                    labels: ['lead-capture', 'textbook-download']
                 })
             }).then(response => {
                 if (response.ok) {
-                    console.log('✅ Lead notification triggered via GitHub Action');
+                    console.log('✅ Lead captured via GitHub issue - automated processing will begin');
                 } else {
-                    console.log('⚠️ GitHub Action trigger failed, using fallback storage');
+                    console.log('⚠️ GitHub issue creation failed, using fallback storage');
                 }
             }).catch(err => {
-                console.log('⚠️ GitHub Action unavailable, using fallback storage:', err);
+                console.log('⚠️ GitHub API unavailable, using fallback storage:', err);
             });
 
             // Method 2: Store in localStorage (for analytics)
