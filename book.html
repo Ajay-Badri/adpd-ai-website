@@ -392,25 +392,28 @@
             // Send lead data via multiple methods for reliability
 
             // Method 1: Send email notification via EmailJS
-            emailjs.send('service_0o262un', 'template_mdikrur', {
-                to_email: 'contact@adpd-ai.com',
-                from_name: leadData.name,
-                from_email: leadData.email,
+            console.log('📧 Attempting to send email via EmailJS...');
+            console.log('Lead data:', leadData);
+
+            const templateParams = {
                 name: leadData.name,
                 email: leadData.email,
                 company: leadData.company || 'Not provided',
                 role: leadData.role || 'Not provided',
                 timestamp: new Date(leadData.timestamp).toLocaleString(),
-                source: 'ADPD³ Textbook Download',
-                message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}`
-            }, 'CjZOI008RIUjEJmqa').then(
-                function(response) {
-                    console.log('✅ Lead notification sent successfully!', response.status, response.text);
-                },
-                function(error) {
-                    console.log('⚠️ Email notification failed:', error);
-                }
-            );
+                message: `New ADPD³ textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`
+            };
+
+            console.log('Template params:', templateParams);
+
+            emailjs.send('service_0o262un', 'template_mdikrur', templateParams, 'CjZOI008RIUjEJmqa')
+                .then(function(response) {
+                    console.log('✅ EmailJS SUCCESS!', response.status, response.text);
+                    alert('Success! Email notification sent. Check contact@adpd-ai.com');
+                }, function(error) {
+                    console.log('❌ EmailJS FAILED:', error);
+                    alert('Email failed: ' + JSON.stringify(error));
+                });
 
             // Method 2: Store in localStorage (for analytics)
             const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
