@@ -291,7 +291,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="download-btn" onclick="downloadBook(event)">
+                    <button type="submit" class="download-btn">
                         📖 Download Free Textbook
                     </button>
                 </form>
@@ -360,8 +360,8 @@
     </footer>
 
     <script>
-        function downloadBook(event) {
-            event.preventDefault();
+        document.getElementById('bookDownloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
             // Get form data
             const name = document.getElementById('book-name').value;
@@ -372,40 +372,78 @@
             // Validate required fields
             if (!name || !email) {
                 alert('Please fill in your name and email address.');
-                return false;
+                return;
             }
 
-            // Create email body for lead capture
-            const emailBody = `ADPD³ TEXTBOOK DOWNLOAD REQUEST
+            // Create lead data
+            const leadData = {
+                name: name,
+                email: email,
+                company: company || 'Not provided',
+                role: role || 'Not provided',
+                timestamp: new Date().toISOString(),
+                source: 'ADPD³ Textbook Download'
+            };
 
-Name: ${name}
-Email: ${email}
-Company/Organization: ${company || 'Not provided'}
-Role: ${role || 'Not provided'}
+            // Send lead data via multiple methods for reliability
 
----
-Requested download of ADPD³ Textbook via ADPD-AI.com`;
+            // Method 1: Send via Formspree (backup service)
+            fetch('https://formspree.io/f/mwpkvgzr', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    subject: 'ADPD³ Textbook Download - Lead Captured',
+                    name: leadData.name,
+                    email: leadData.email,
+                    company: leadData.company,
+                    role: leadData.role,
+                    message: `New textbook download from ${leadData.name} (${leadData.email})`
+                })
+            }).catch(err => console.log('Backup lead capture failed:', err));
 
-            // Send notification email
-            const subject = `ADPD³ Textbook Download - ${name}`;
-            const mailtoLink = `mailto:contact@adpd-ai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            // Method 2: Store in localStorage (for analytics)
+            const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
+            existingLeads.push(leadData);
+            localStorage.setItem('adpd_leads', JSON.stringify(existingLeads));
 
-            // Open email client (for lead notification)
-            window.open(mailtoLink, '_blank');
+            // Method 3: Send to Google Analytics (if available)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'book_download', {
+                    event_category: 'engagement',
+                    event_label: name,
+                    custom_map: {custom1: email}
+                });
+            }
 
-            // Provide download link
+            // Show success message and start download
+            alert('Thank you! Your download will start automatically.');
+
+            // Start the download
             setTimeout(() => {
-                window.open('assets/downloads/ADPD_Textbook1.pdf', '_blank');
-
-                // Show success message
-                alert('Thank you! The textbook is now downloading. We\'ve also sent your details to keep you updated on ADPD³ developments.');
+                // Create download link and click it
+                const downloadLink = document.createElement('a');
+                downloadLink.href = 'assets/downloads/ADPD_Textbook1.pdf';
+                downloadLink.download = 'ADPD_Textbook.pdf';
+                downloadLink.target = '_blank';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
 
                 // Clear form
                 document.getElementById('bookDownloadForm').reset();
-            }, 1000);
 
-            return false;
-        }
+                // Show follow-up message
+                setTimeout(() => {
+                    alert('Download started! Check your downloads folder for the ADPD³ textbook. We may occasionally send you updates about ADPD³ developments.');
+                }, 1000);
+
+            }, 500);
+        });
+
+        // Optional: Check if there are stored leads for admin purposes
+        console.log('Total textbook downloads:', JSON.parse(localStorage.getItem('adpd_leads') || '[]').length);
     </script>
 </body>
 </html>
