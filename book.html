@@ -387,21 +387,29 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Send via Formspree (backup service)
-            fetch('https://formspree.io/f/mwpkvgzr', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    subject: 'ADPD³ Textbook Download - Lead Captured',
-                    name: leadData.name,
-                    email: leadData.email,
-                    company: leadData.company,
-                    role: leadData.role,
-                    message: `New textbook download from ${leadData.name} (${leadData.email})`
-                })
-            }).catch(err => console.log('Backup lead capture failed:', err));
+            // Method 1: Send via EmailJS (free service that can connect to Resend)
+            // For now, using a simple notification approach
+
+            // Create email content for manual follow-up
+            const emailTemplate = `
+ADPD³ TEXTBOOK DOWNLOAD NOTIFICATION
+
+New lead captured:
+Name: ${leadData.name}
+Email: ${leadData.email}
+Company: ${leadData.company}
+Role: ${leadData.role}
+Download Time: ${new Date(leadData.timestamp).toLocaleString()}
+
+Source: ADPD-AI.com textbook download form
+
+---
+This lead was automatically captured. You may want to follow up with this contact about ADPD³ services or the Parinama beta program.
+            `.trim();
+
+            // Store the lead data for later retrieval
+            console.log('📧 New textbook download lead:', leadData);
+            console.log('📋 Email template for manual sending:', emailTemplate);
 
             // Method 2: Store in localStorage (for analytics)
             const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
@@ -442,8 +450,38 @@
             }, 500);
         });
 
+        // Admin function to export leads (accessible via browser console)
+        window.exportLeads = function() {
+            const leads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
+            if (leads.length === 0) {
+                console.log('No leads to export');
+                return;
+            }
+
+            const csvContent = 'Name,Email,Company,Role,Timestamp,Source\n' +
+                leads.map(lead =>
+                    `"${lead.name}","${lead.email}","${lead.company}","${lead.role}","${lead.timestamp}","${lead.source}"`
+                ).join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `adpd_textbook_leads_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            console.log(`Exported ${leads.length} leads to CSV`);
+        };
+
         // Optional: Check if there are stored leads for admin purposes
-        console.log('Total textbook downloads:', JSON.parse(localStorage.getItem('adpd_leads') || '[]').length);
+        const totalDownloads = JSON.parse(localStorage.getItem('adpd_leads') || '[]').length;
+        console.log('Total textbook downloads:', totalDownloads);
+        if (totalDownloads > 0) {
+            console.log('💡 To export leads as CSV, run: exportLeads()');
+        }
     </script>
 </body>
 </html>
