@@ -396,6 +396,10 @@
             console.log('Lead data:', leadData);
 
             const templateParams = {
+                to_name: 'ADPD Team',
+                to_email: 'ajaybadri@adpd-ai.com',
+                from_name: leadData.name,
+                from_email: leadData.email,
                 name: leadData.name,
                 email: leadData.email,
                 company: leadData.company || 'Not provided',
