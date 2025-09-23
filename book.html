@@ -387,29 +387,27 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Send via EmailJS (free service that can connect to Resend)
-            // For now, using a simple notification approach
-
-            // Create email content for manual follow-up
-            const emailTemplate = `
-ADPD³ TEXTBOOK DOWNLOAD NOTIFICATION
-
-New lead captured:
-Name: ${leadData.name}
-Email: ${leadData.email}
-Company: ${leadData.company}
-Role: ${leadData.role}
-Download Time: ${new Date(leadData.timestamp).toLocaleString()}
-
-Source: ADPD-AI.com textbook download form
-
----
-This lead was automatically captured. You may want to follow up with this contact about ADPD³ services or the Parinama beta program.
-            `.trim();
-
-            // Store the lead data for later retrieval
-            console.log('📧 New textbook download lead:', leadData);
-            console.log('📋 Email template for manual sending:', emailTemplate);
+            // Method 1: Trigger GitHub Action to send email via Resend
+            fetch(`https://api.github.com/repos/Ajay-Badri/adpd-ai-website/dispatches`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer github_pat_YOUR_TOKEN_HERE',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/vnd.github.v3+json'
+                },
+                body: JSON.stringify({
+                    event_type: 'textbook_download',
+                    client_payload: leadData
+                })
+            }).then(response => {
+                if (response.ok) {
+                    console.log('✅ Lead notification triggered via GitHub Action');
+                } else {
+                    console.log('⚠️ GitHub Action trigger failed, using fallback storage');
+                }
+            }).catch(err => {
+                console.log('⚠️ GitHub Action unavailable, using fallback storage:', err);
+            });
 
             // Method 2: Store in localStorage (for analytics)
             const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');

@@ -1,0 +1,59 @@
+name: Lead Capture via Resend
+
+on:
+  repository_dispatch:
+    types: [textbook_download]
+
+jobs:
+  send-lead-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email via Resend
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fetch = require('node-fetch');
+
+            const leadData = context.payload.client_payload;
+
+            const emailHtml = `
+              <h2>New ADPD³ Textbook Download</h2>
+              <p><strong>Name:</strong> ${leadData.name}</p>
+              <p><strong>Email:</strong> ${leadData.email}</p>
+              <p><strong>Company:</strong> ${leadData.company || 'Not provided'}</p>
+              <p><strong>Role:</strong> ${leadData.role || 'Not provided'}</p>
+              <p><strong>Download Time:</strong> ${new Date(leadData.timestamp).toLocaleString()}</p>
+              <hr>
+              <p><em>Lead captured from ADPD-AI.com textbook download form</em></p>
+              <p><strong>Follow-up suggestions:</strong></p>
+              <ul>
+                <li>Add to mailing list for ADPD³ updates</li>
+                <li>Consider for Parinama beta program</li>
+                <li>Potential candidate for ADPD³ training/consulting</li>
+              </ul>
+            `;
+
+            try {
+              const response = await fetch('https://api.resend.com/emails', {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${{ secrets.RESEND_API_KEY }}`,
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  from: 'website@adpd-ai.com',
+                  to: ['contact@adpd-ai.com'],
+                  subject: `ADPD³ Textbook Download - ${leadData.name}`,
+                  html: emailHtml
+                })
+              });
+
+              if (response.ok) {
+                console.log('✅ Lead notification sent successfully');
+              } else {
+                const error = await response.text();
+                console.error('❌ Failed to send email:', error);
+              }
+            } catch (error) {
+              console.error('❌ Error sending email:', error);
+            }
