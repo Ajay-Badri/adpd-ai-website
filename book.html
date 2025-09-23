@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free ADPD³ Textbook - Master Adoption-Driven Development</title>
+    <meta name="description" content="Download the comprehensive ADPD³ textbook and learn the principles of Adoption-Driven Product Design, Development and Delivery.">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Enhanced Parinama-style Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none !important;
+            color: white !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            color: white !important;
+            text-decoration: none !important;
+        }
+
+        .nav-menu a.active {
+            text-decoration: underline !important;
+            text-underline-offset: 4px;
+            color: white !important;
+        }
+
+        .nav-cta {
+            background: white;
+            color: #2563eb !important;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            opacity: 1 !important;
+        }
+
+        .nav-cta.active {
+            background: #e0f2fe;
+        }
+
+        /* Fix for sections to account for fixed navbar */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* Book Download Specific Styles */
+        .book-hero {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .book-cover {
+            max-width: 200px;
+            height: auto;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+
+        .download-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: -2rem auto 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .download-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .book-benefits {
+            padding: 4rem 0;
+            background: #f9fafb;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Parinama Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-brand">
+                    <span class="nav-logo">ADPD³</span>
+                    <span class="nav-subtitle">| Adoption-Driven Product Design, Development and Delivery |</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="method.html">Method</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="book.html" class="active">Free Book</a></li>
+                </ul>
+                <a href="beta.html" class="nav-cta">Try Parinama</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Book Hero Section -->
+    <section class="book-hero">
+        <div class="container">
+            <h1>Free ADPD³ Textbook</h1>
+            <p class="hero-subtitle">Master the Principles of Adoption-Driven Development</p>
+
+            <!-- Placeholder for book cover - you can replace with actual image -->
+            <div class="book-cover" style="background: linear-gradient(45deg, #1e40af, #7c3aed); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: bold;">
+                ADPD³<br>Textbook
+            </div>
+
+            <p style="max-width: 600px; margin: 2rem auto; font-size: 1.1rem; opacity: 0.9;">
+                Learn the complete methodology that transforms ideas into software people actually adopt.
+                This comprehensive textbook covers all aspects of ADPD³ principles, from conception to delivery.
+            </p>
+        </div>
+    </section>
+
+    <!-- Download Form Section -->
+    <section style="background: #f3f4f6; padding: 0 0 4rem 0;">
+        <div class="container">
+            <div class="download-form">
+                <h2 style="text-align: center; margin-bottom: 1rem; color: #1f2937;">Download Your Free Copy</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: #6b7280;">
+                    Get instant access to the complete ADPD³ textbook. Just provide your details below.
+                </p>
+
+                <form id="bookDownloadForm">
+                    <div class="form-group">
+                        <label for="book-name">Full Name *</label>
+                        <input type="text" id="book-name" name="name" required autocomplete="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-email">Email Address *</label>
+                        <input type="email" id="book-email" name="email" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-company">Company/Organization</label>
+                        <input type="text" id="book-company" name="company" autocomplete="organization">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-role">Your Role</label>
+                        <select id="book-role" name="role" autocomplete="organization-title">
+                            <option value="">Select your role</option>
+                            <option value="product-manager">Product Manager</option>
+                            <option value="executive">Executive/Leadership</option>
+                            <option value="developer">Developer/Engineer</option>
+                            <option value="designer">Designer</option>
+                            <option value="consultant">Consultant</option>
+                            <option value="entrepreneur">Entrepreneur/Founder</option>
+                            <option value="student">Student</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="download-btn" onclick="downloadBook(event)">
+                        📖 Download Free Textbook
+                    </button>
+                </form>
+
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #6b7280;">
+                    We respect your privacy. Your information will only be used to send you the book and occasional updates about ADPD³.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Benefits Section -->
+    <section class="book-benefits">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem;">What You'll Learn</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto; color: #6b7280;">
+                This comprehensive textbook covers everything you need to know about building software that gets adopted.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>ADPD³ Fundamentals</h3>
+                    <p>Master the core principles of Adoption-Driven Product Design, Development and Delivery.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
+                    <h3>7-Gate Methodology</h3>
+                    <p>Learn the proven workflow that ensures every feature is designed for adoption from day one.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <h3>FUSE Framework</h3>
+                    <p>Understand how to measure and optimize for Functionality, Usability, Scalability, and Efficiency.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤖</div>
+                    <h3>AI-Human Collaboration</h3>
+                    <p>Discover how to leverage AI tools effectively while maintaining human oversight and creativity.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Real-World Case Studies</h3>
+                    <p>Learn from practical examples and implementations across different industries and project types.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛠️</div>
+                    <h3>Implementation Guide</h3>
+                    <p>Get step-by-step instructions for applying ADPD³ principles to your own projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ajay Badrinarayanan and Kharan Badrinarayanan. All rights reserved.</p>
+            <p>ADPD³ methodology and Parinama software are protected by copyright law.</p>
+        </div>
+    </footer>
+
+    <script>
+        function downloadBook(event) {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('book-name').value;
+            const email = document.getElementById('book-email').value;
+            const company = document.getElementById('book-company').value;
+            const role = document.getElementById('book-role').value;
+
+            // Validate required fields
+            if (!name || !email) {
+                alert('Please fill in your name and email address.');
+                return false;
+            }
+
+            // Create email body for lead capture
+            const emailBody = `ADPD³ TEXTBOOK DOWNLOAD REQUEST
+
+Name: ${name}
+Email: ${email}
+Company/Organization: ${company || 'Not provided'}
+Role: ${role || 'Not provided'}
+
+---
+Requested download of ADPD³ Textbook via ADPD-AI.com`;
+
+            // Send notification email
+            const subject = `ADPD³ Textbook Download - ${name}`;
+            const mailtoLink = `mailto:contact@adpd-ai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            // Open email client (for lead notification)
+            window.open(mailtoLink, '_blank');
+
+            // Provide download link
+            setTimeout(() => {
+                window.open('assets/downloads/ADPD_Textbook1.pdf', '_blank');
+
+                // Show success message
+                alert('Thank you! The textbook is now downloading. We\'ve also sent your details to keep you updated on ADPD³ developments.');
+
+                // Clear form
+                document.getElementById('bookDownloadForm').reset();
+            }, 1000);
+
+            return false;
+        }
+    </script>
+</body>
+</html>
