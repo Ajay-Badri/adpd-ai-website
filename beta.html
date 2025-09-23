@@ -194,11 +194,7 @@
             <p class="lead" style="text-align: center;">Join a select group of innovators experiencing the future of product development</p>
             
             <div style="max-width: 600px; margin: 3rem auto;">
-                <form action="https://formspree.io/f/contact@adpd-ai.com" method="POST" style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-                    <!-- Hidden field to specify email destination -->
-                    <input type="hidden" name="_to" value="contact@adpd-ai.com">
-                    <input type="hidden" name="_subject" value="Parinama Beta Access Request">
-                    <input type="hidden" name="_next" value="https://adpd-ai.com/beta.html?success=true">
+                <form id="betaForm" style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
 
                     <div class="form-group">
                         <label for="name">Full Name *</label>
@@ -246,7 +242,7 @@
                     </div>
 
                     <div style="text-align: center; margin-top: 2rem;">
-                        <button type="submit" class="button button-primary button-large">Request Beta Access</button>
+                        <button type="submit" class="button button-primary button-large" onclick="submitBetaRequest(event)">Request Beta Access</button>
                     </div>
                     
                     <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #64748b;">
@@ -289,12 +285,59 @@
     </footer>
 
     <script>
-        // Check if form was successfully submitted
+        function submitBetaRequest(event) {
+            event.preventDefault();
+
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const role = document.getElementById('role').value;
+            const interest = document.getElementById('interest').value;
+            const aiExperience = document.getElementById('ai-experience').value;
+
+            // Validate required fields
+            if (!name || !email || !role || !interest) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+
+            // Create email body
+            const emailBody = `PARINAMA BETA ACCESS REQUEST
+
+Name: ${name}
+Email: ${email}
+Company/Organization: ${company || 'Not provided'}
+Role: ${role}
+AI Experience: ${aiExperience || 'Not provided'}
+
+What interests you most about ADPD³:
+${interest}
+
+---
+Submitted via ADPD-AI.com beta access form`;
+
+            // Create mailto link
+            const subject = `Parinama Beta Access Request - ${name}`;
+            const mailtoLink = `mailto:contact@adpd-ai.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+            // Open email client
+            window.open(mailtoLink, '_blank');
+
+            // Show success message
+            alert('Thank you for your interest! Your email client should open with a pre-filled message. Please send the email to complete your beta access request.');
+
+            // Clear form
+            document.getElementById('betaForm').reset();
+
+            return false;
+        }
+
+        // Check if redirected with success parameter
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('success') === 'true') {
             document.addEventListener('DOMContentLoaded', function() {
                 alert('Thank you for your beta access request! We will review your application and contact you within 24-48 hours.');
-                // Clean up URL
                 window.history.replaceState({}, document.title, window.location.pathname);
             });
         }
