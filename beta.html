@@ -194,26 +194,30 @@
             <p class="lead" style="text-align: center;">Join a select group of innovators experiencing the future of product development</p>
             
             <div style="max-width: 600px; margin: 3rem auto;">
-                <form action="mailto:contact@adpd-ai.com?subject=Parinama Beta Access Request" method="get" enctype="text/plain" style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <form action="https://formspree.io/f/contact@adpd-ai.com" method="POST" style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <!-- Hidden field to specify email destination -->
+                    <input type="hidden" name="_to" value="contact@adpd-ai.com">
+                    <input type="hidden" name="_subject" value="Parinama Beta Access Request">
+                    <input type="hidden" name="_next" value="https://adpd-ai.com/beta.html?success=true">
 
                     <div class="form-group">
                         <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" required autocomplete="name">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required autocomplete="email">
                     </div>
 
                     <div class="form-group">
                         <label for="company">Company/Organization</label>
-                        <input type="text" id="company" name="company">
+                        <input type="text" id="company" name="company" autocomplete="organization">
                     </div>
 
                     <div class="form-group">
                         <label for="role">Your Role *</label>
-                        <select id="role" name="role" required>
+                        <select id="role" name="role" required autocomplete="organization-title">
                             <option value="">Select your role</option>
                             <option value="product-manager">Product Manager</option>
                             <option value="executive">Executive/Leadership</option>
@@ -242,7 +246,7 @@
                     </div>
 
                     <div style="text-align: center; margin-top: 2rem;">
-                        <button type="submit" class="button button-primary button-large" onclick="submitForm(event)">Request Beta Access</button>
+                        <button type="submit" class="button button-primary button-large">Request Beta Access</button>
                     </div>
                     
                     <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #64748b;">
@@ -285,46 +289,14 @@
     </footer>
 
     <script>
-        function submitForm(event) {
-            event.preventDefault();
-
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const role = document.getElementById('role').value;
-            const interest = document.getElementById('interest').value;
-            const aiExperience = document.getElementById('ai-experience').value;
-
-            // Validate required fields
-            if (!name || !email || !role || !interest) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Create email body
-            const emailBody = `Beta Access Request Details:
-
-Name: ${name}
-Email: ${email}
-Company/Organization: ${company || 'Not provided'}
-Role: ${role}
-AI Experience: ${aiExperience || 'Not provided'}
-
-What interests you most about ADPD³:
-${interest}
-
----
-This request was submitted through the Parinama Beta Access form.`;
-
-            // Create mailto link
-            const mailtoLink = `mailto:contact@adpd-ai.com?subject=Parinama Beta Access Request - ${name}&body=${encodeURIComponent(emailBody)}`;
-
-            // Open email client
-            window.location.href = mailtoLink;
-
-            // Show confirmation message
-            alert('Thank you for your interest! Your email client should open with a pre-filled message. Please send the email to complete your beta access request.');
+        // Check if form was successfully submitted
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            document.addEventListener('DOMContentLoaded', function() {
+                alert('Thank you for your beta access request! We will review your application and contact you within 24-48 hours.');
+                // Clean up URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            });
         }
     </script>
 </body>
