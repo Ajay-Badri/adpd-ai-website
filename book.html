@@ -406,13 +406,14 @@
 
             console.log('Template params:', templateParams);
 
-            emailjs.send('service_0o262un', 'template_mdikrur', templateParams, 'CjZOI008RIUjEJmqa')
+            emailjs.send('service_0o262un', 'template_mdikrur', templateParams)
                 .then(function(response) {
                     console.log('✅ EmailJS SUCCESS!', response.status, response.text);
-                    alert('Success! Email notification sent. Check contact@adpd-ai.com');
+                    alert('Success! Email notification sent. Check contact@adpd-ai.com and EmailJS dashboard.');
                 }, function(error) {
                     console.log('❌ EmailJS FAILED:', error);
-                    alert('Email failed: ' + JSON.stringify(error));
+                    console.log('Error details:', error);
+                    alert('Email failed. Check console for details. Error: ' + error.text);
                 });
 
             // Method 2: Store in localStorage (for analytics)
