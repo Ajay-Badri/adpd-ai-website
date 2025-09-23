@@ -6,6 +6,7 @@
     <title>Free ADPD³ Textbook - Master Adoption-Driven Development</title>
     <meta name="description" content="Download the comprehensive ADPD³ textbook and learn the principles of Adoption-Driven Product Design, Development and Delivery.">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         /* Enhanced Parinama-style Navigation */
         .navbar {
@@ -360,6 +361,9 @@
     </footer>
 
     <script>
+        // Initialize EmailJS
+        emailjs.init('CjZOI008RIUjEJmqa');
+
         document.getElementById('bookDownloadForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -387,48 +391,26 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Create GitHub issue to trigger automated lead processing
-            // This approach uses GitHub's public API without exposing tokens
-            const issueTitle = `Lead Capture: ${leadData.name} - ${new Date().toLocaleDateString()}`;
-            const issueBody = `**New ADPD³ Textbook Download**
-
-**Contact Information:**
-- **Name:** ${leadData.name}
-- **Email:** ${leadData.email}
-- **Company:** ${leadData.company || 'Not provided'}
-- **Role:** ${leadData.role || 'Not provided'}
-
-**Download Details:**
-- **Time:** ${new Date(leadData.timestamp).toLocaleString()}
-- **Source:** ADPD-AI.com textbook download form
-
----
-*This issue was automatically created by the lead capture system. A GitHub Action will process this lead and send email notifications.*
-
-\`\`\`json
-${JSON.stringify(leadData, null, 2)}
-\`\`\``;
-
-            // Create GitHub issue (public API, no authentication required for public repos)
-            fetch(`https://api.github.com/repos/Ajay-Badri/adpd-ai-website/issues`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+            // Method 1: Send email notification via EmailJS
+            emailjs.send('service_0o262un', 'template_mdikrur', {
+                to_email: 'contact@adpd-ai.com',
+                from_name: leadData.name,
+                from_email: leadData.email,
+                name: leadData.name,
+                email: leadData.email,
+                company: leadData.company || 'Not provided',
+                role: leadData.role || 'Not provided',
+                timestamp: new Date(leadData.timestamp).toLocaleString(),
+                source: 'ADPD³ Textbook Download',
+                message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}`
+            }, 'CjZOI008RIUjEJmqa').then(
+                function(response) {
+                    console.log('✅ Lead notification sent successfully!', response.status, response.text);
                 },
-                body: JSON.stringify({
-                    title: issueTitle,
-                    body: issueBody,
-                    labels: ['lead-capture', 'textbook-download']
-                })
-            }).then(response => {
-                if (response.ok) {
-                    console.log('✅ Lead captured via GitHub issue - automated processing will begin');
-                } else {
-                    console.log('⚠️ GitHub issue creation failed, using fallback storage');
+                function(error) {
+                    console.log('⚠️ Email notification failed:', error);
                 }
-            }).catch(err => {
-                console.log('⚠️ GitHub API unavailable, using fallback storage:', err);
-            });
+            );
 
             // Method 2: Store in localStorage (for analytics)
             const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
