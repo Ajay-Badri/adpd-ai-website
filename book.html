@@ -391,31 +391,43 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Send via Formspree (reliable, works immediately)
+            // Method 1: Send via Formspree with detailed debugging
+            console.log('🚀 Sending to Formspree...');
+            const formData = {
+                subject: `ADPD³ Textbook Download - ${leadData.name}`,
+                name: leadData.name,
+                email: leadData.email,
+                company: leadData.company || 'Not provided',
+                role: leadData.role || 'Not provided',
+                timestamp: new Date(leadData.timestamp).toLocaleString(),
+                message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`,
+                _replyto: leadData.email,
+                _subject: `ADPD³ Textbook Download - ${leadData.name}`
+            };
+
+            console.log('📋 Form data:', formData);
+
             fetch('https://formspree.io/f/mjkavpbn', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    subject: `ADPD³ Textbook Download - ${leadData.name}`,
-                    name: leadData.name,
-                    email: leadData.email,
-                    company: leadData.company || 'Not provided',
-                    role: leadData.role || 'Not provided',
-                    timestamp: new Date(leadData.timestamp).toLocaleString(),
-                    message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`,
-                    _replyto: leadData.email,
-                    _subject: `ADPD³ Textbook Download - ${leadData.name}`
-                })
-            }).then(response => {
+                body: JSON.stringify(formData)
+            }).then(async response => {
+                console.log('📡 Formspree response status:', response.status);
+                const responseText = await response.text();
+                console.log('📄 Formspree response:', responseText);
+
                 if (response.ok) {
-                    console.log('✅ Lead notification sent successfully via Formspree!');
+                    console.log('✅ Formspree SUCCESS!');
+                    alert('Success! Email notification sent to ajaybadri@adpd-ai.com');
                 } else {
-                    console.log('⚠️ Formspree failed, using local storage fallback');
+                    console.log('❌ Formspree FAILED');
+                    alert('Formspree failed. Check console for details.');
                 }
             }).catch(err => {
-                console.log('⚠️ Network error, using local storage fallback:', err);
+                console.log('❌ Network error:', err);
+                alert('Network error: ' + err.message);
             });
 
             // Show success message to user
