@@ -391,47 +391,26 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Send via Formspree with detailed debugging
-            console.log('🚀 Sending to Formspree...');
-            const formData = {
-                subject: `ADPD³ Textbook Download - ${leadData.name}`,
-                name: leadData.name,
-                email: leadData.email,
-                company: leadData.company || 'Not provided',
-                role: leadData.role || 'Not provided',
-                timestamp: new Date(leadData.timestamp).toLocaleString(),
-                message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`,
-                _replyto: leadData.email,
-                _subject: `ADPD³ Textbook Download - ${leadData.name}`
-            };
-
-            console.log('📋 Form data:', formData);
-
+            // Method 1: Send lead notification via Formspree
             fetch('https://formspree.io/f/mjkavpbn', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData)
-            }).then(async response => {
-                console.log('📡 Formspree response status:', response.status);
-                const responseText = await response.text();
-                console.log('📄 Formspree response:', responseText);
-
-                if (response.ok) {
-                    console.log('✅ Formspree SUCCESS!');
-                    alert('Success! Email notification sent to ajaybadri@adpd-ai.com');
-                } else {
-                    console.log('❌ Formspree FAILED');
-                    alert('Formspree failed. Check console for details.');
-                }
+                body: JSON.stringify({
+                    subject: `ADPD³ Textbook Download - ${leadData.name}`,
+                    name: leadData.name,
+                    email: leadData.email,
+                    company: leadData.company || 'Not provided',
+                    role: leadData.role || 'Not provided',
+                    timestamp: new Date(leadData.timestamp).toLocaleString(),
+                    message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`,
+                    _replyto: leadData.email,
+                    _subject: `ADPD³ Textbook Download - ${leadData.name}`
+                })
             }).catch(err => {
-                console.log('❌ Network error:', err);
-                alert('Network error: ' + err.message);
+                // Silently handle errors - form still works for user
             });
-
-            // Show success message to user
-            alert('Thank you! Your download will start automatically. We have your contact information and will be in touch.');
 
             // Method 2: Store in localStorage (for analytics)
             const existingLeads = JSON.parse(localStorage.getItem('adpd_leads') || '[]');
@@ -498,12 +477,8 @@
             console.log(`Exported ${leads.length} leads to CSV`);
         };
 
-        // Optional: Check if there are stored leads for admin purposes
+        // Admin function available via console: exportLeads()
         const totalDownloads = JSON.parse(localStorage.getItem('adpd_leads') || '[]').length;
-        console.log('Total textbook downloads:', totalDownloads);
-        if (totalDownloads > 0) {
-            console.log('💡 To export leads as CSV, run: exportLeads()');
-        }
     </script>
 </body>
 </html>
