@@ -391,9 +391,32 @@
 
             // Send lead data via multiple methods for reliability
 
-            // Method 1: Store leads locally for now (EmailJS SMTP issues)
-            console.log('📝 Lead captured and stored locally');
-            console.log('Lead data:', leadData);
+            // Method 1: Send via Formspree (reliable, works immediately)
+            fetch('https://formspree.io/f/mjkavpbn', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    subject: `ADPD³ Textbook Download - ${leadData.name}`,
+                    name: leadData.name,
+                    email: leadData.email,
+                    company: leadData.company || 'Not provided',
+                    role: leadData.role || 'Not provided',
+                    timestamp: new Date(leadData.timestamp).toLocaleString(),
+                    message: `New textbook download from ${leadData.name} (${leadData.email}). Company: ${leadData.company || 'Not provided'}, Role: ${leadData.role || 'Not provided'}.`,
+                    _replyto: leadData.email,
+                    _subject: `ADPD³ Textbook Download - ${leadData.name}`
+                })
+            }).then(response => {
+                if (response.ok) {
+                    console.log('✅ Lead notification sent successfully via Formspree!');
+                } else {
+                    console.log('⚠️ Formspree failed, using local storage fallback');
+                }
+            }).catch(err => {
+                console.log('⚠️ Network error, using local storage fallback:', err);
+            });
 
             // Show success message to user
             alert('Thank you! Your download will start automatically. We have your contact information and will be in touch.');
